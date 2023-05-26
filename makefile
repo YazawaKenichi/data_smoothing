@@ -8,3 +8,6 @@ plot_smoothing.o: plot_smoothing.c
 
 clean:
 	rm -f *.o run
+
+all:
+	rm -f *.o
