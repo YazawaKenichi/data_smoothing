@@ -12,8 +12,8 @@ int main(void)
     }
 
     print(plot_data);
-    smoothing(plot_data, 2, DATA_SIZE);
-    printf("\nSmoothing\n");
+    smoothing(plot_data, 3, DATA_SIZE);
+    printf("\nSmoothing\n\n");
     print(plot_data);
 }
 
@@ -21,6 +21,6 @@ void print(float *data)
 {
     for(uint16_t i = 0; i < DATA_SIZE; i++)
     {
-        printf("plot = %f", *(data + i));
+        printf("plot = %f\n", *(data + i));
     }
 }
