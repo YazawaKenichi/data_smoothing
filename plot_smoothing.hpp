@@ -1,12 +1,8 @@
 #ifndef PLOT_SMOOTHING_HPP_
 #define PLOT_SMOOTHING_HPP_
 
-class PlotSmoothing
-{
-private:
+#include <stdint.h>
 
-public:
-
-};
+void smoothing(float *, uint16_t, uint16_t);
 
 #endif // PLOT_SMOOTHING_HPP_

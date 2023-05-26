@@ -1,6 +1,6 @@
 #include "plot_smoothing.hpp"
 
-void Smoothing(float *data_addr, uint16_t num_of_adjacent, uint16_t data_size)
+void smoothing(float *data_addr, uint16_t num_of_adjacent, uint16_t data_size)
 {
     float cp_data[data_size] = {0};
     uint16_t i, j;
