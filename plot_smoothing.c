@@ -1,4 +1,5 @@
 #include "plot_smoothing.h"
+#include <stdio.h>
 
 void smoothing(float *data_addr, uint16_t data_size, uint16_t num_of_adjacent)
 {
