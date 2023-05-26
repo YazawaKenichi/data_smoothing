@@ -13,7 +13,7 @@ int main(void)
 
     print(plot_data);
     smoothing(plot_data, 2, DATA_SIZE);
-    print("\nSmoothing\n");
+    printf("\nSmoothing\n");
     print(plot_data);
 }
 
