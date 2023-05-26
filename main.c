@@ -2,7 +2,7 @@
 
 #define DATA_SIZE 100
 
-void main(void)
+int main(void)
 {
     float plot_data[DATA_SIZE] = {0};
 
@@ -11,8 +11,10 @@ void main(void)
         plot_data[i] = (float)i;
     }
 
+    print(plot_data);
     smoothing(plot_data, 2, DATA_SIZE);
-    print()
+    print("\nSmoothing\n");
+    print(plot_data);
 }
 
 void print(float *data)
