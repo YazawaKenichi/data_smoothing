@@ -1,27 +1,24 @@
-#include "main.hpp"
+#include "main.h"
 
 #define DATA_SIZE 100
 
-
-void PlotSmoothing::Run()
+void main(void)
 {
     float plot_data[DATA_SIZE] = {0};
 
-    for{}
+    for(uint16_t i = 0; i < DATA_SIZE; i++)
+    {
+        plot_data[i] = (float)i;
+    }
 
-
-
-    Smoothing()
-    Print()
-
+    smoothing(plot_data, 2, DATA_SIZE);
+    print()
 }
 
-void PlotSmoothing::Print(float *plot)
+void print(float *data)
 {
-    printf("plot = %f", plot);
-}
-
-int main()
-{
-
+    for(uint16_t i = 0; i < DATA_SIZE; i++)
+    {
+        printf("plot = %f", *(data + i));
+    }
 }
