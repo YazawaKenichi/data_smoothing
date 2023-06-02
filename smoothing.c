@@ -1,3 +1,5 @@
+// SPDX-FileCopyrightText: 2023 nacky823
+// SPDX-License-Identifier: Apache-2.0
 #include "smoothing.h"
 
 void smoothing(float *data_addr, uint16_t data_size, uint16_t num_of_adjacent)
