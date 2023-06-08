@@ -1,3 +1,5 @@
+// SPDX-FileCopyrightText: 2023 nacky823
+// SPDX-License-Identifier: Apache-2.0
 #ifndef SMOOTHING_HPP_
 #define SMOOTHING_HPP_
 
