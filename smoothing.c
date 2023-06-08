@@ -2,6 +2,17 @@
 // SPDX-License-Identifier: Apache-2.0
 #include "smoothing.h"
 
+/**
+* This is a function that,
+* given a data address,
+* smoothes the data and saves it by overwriting.
+*
+* @param[out] data_addr The address of the first data element to be smoothed.
+* @param[in] data_size The number of data points to be smoothed.
+* @param[in] num_of_adjacent
+*     The number of data points before and after a specific data point
+*     that will be used for smoothing.
+*/
 void smoothing(float *data_addr, uint16_t data_size, uint16_t num_of_adjacent)
 {
     float cp_data[data_size];
