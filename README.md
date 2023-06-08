@@ -3,8 +3,13 @@
 平滑化して同じアドレスに上書き保存するプログラムです。
 
 ## 動作確認済みの環境
-+ OS : Ubuntu 22.04.1 LTS
-+ Compiler : GCC Version 11.3.0
++ make 後の実行ファイル `run`
+    + CPU : Intel(R) Core(TM) i7-10750H CPU @ 2.60GHz
+    + OS : Ubuntu 22.04.1 LTS
+    + Compiler : GCC Version 11.3.0
++ `smoothing.h`, `smoothing.c`
+    + CPU : STM32F405RGT6
+    + IDE : STM32CubeIDE Version 1.5.1
 
 ## インストール
 ```
