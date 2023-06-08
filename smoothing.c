@@ -2,6 +2,8 @@
 // SPDX-License-Identifier: Apache-2.0
 #include "smoothing.h"
 
+#define FLOAT_BYTE 4
+
 /**
 * This is a function that,
 * given a data address,
@@ -31,11 +33,11 @@ void smoothing(float *data_addr, uint16_t data_size, uint16_t num_of_adjacent)
         for(j = min; j <= max; j++)
         {
             if(j < 0 || j >= data_size) continue;
-            sum += *(data_addr + j);
+            sum += *(data_addr + (j * FLOAT_BYTE));
         }
         if(i < num_of_adjacent || i >= (data_size - num_of_adjacent))
         {
-            cp_data[i] = *(data_addr + i);
+            cp_data[i] = *(data_addr + (i * FLOAT_BYTE));
             continue;
         }
         avg = (float)sum / (num_of_adjacent * 2 + 1);
@@ -44,6 +46,6 @@ void smoothing(float *data_addr, uint16_t data_size, uint16_t num_of_adjacent)
 
     for(i = 0; i < data_size; i++)
     {
-        *(data_addr + i) = cp_data[i];
+        *(data_addr + (i * FLOAT_BYTE)) = cp_data[i];
     }
 }
