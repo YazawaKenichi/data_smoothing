@@ -6,15 +6,28 @@
 int main(void)
 {
     float plot_data[DATA_SIZE];
-    uint16_t i;
+    float init_data = 0;
+    uint16_t count = 0;
 
-    for(i = 0; i < ADJACENT; i++) plot_data[i] = 5;
-    for(i = ADJACENT; i < DATA_SIZE-ADJACENT; i++) plot_data[i] = 2;
-    for(i = DATA_SIZE-ADJACENT; i < DATA_SIZE; i++) plot_data[i] = 6;
+    for(uint16_t i = 0; i < DATA_SIZE; i++)
+    {
+        if(count < ADJACENT)
+        {
+            plot_data[i] = init_data;
+            count++;
+        }
+        else
+        {
+            count = 1;
+            init_data++;
+            plot_data[i] = init_data;
+        }
+    }
 
+    printf("Data initialization\n\n");
     print(plot_data);
     smoothing(plot_data, DATA_SIZE, ADJACENT);
-    printf("\nSmoothing\n\n");
+    printf("\nData smoothing\n\n");
     print(plot_data);
 }
 
@@ -22,6 +35,6 @@ void print(float *data)
 {
     for(uint16_t i = 0; i < DATA_SIZE; i++)
     {
-        printf("plot = %f\n", *(data + i));
+        printf("data[%d] = %f\n", i, *(data + i));
     }
 }
