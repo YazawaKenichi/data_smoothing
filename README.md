@@ -28,15 +28,6 @@ $x_i$ の合計を計算し、それを母数である $a + a + 1 = 5$ で割る
 
 あとはこれを $i = 0$ から $i = 99$ の範囲全てで行う。
 
-## 動作確認済みの環境
-+ make 後の実行ファイル `run`
-    + CPU : Intel(R) Core(TM) i7-10750H CPU @ 2.60GHz
-    + OS : Ubuntu 22.04.1 LTS
-    + Compiler : GCC Version 11.3.0
-+ `smoothing.h`, `smoothing.c`
-    + CPU : STM32F405RGT6
-    + IDE : STM32CubeIDE Version 1.5.1
-
 ## 使用方法
 1. （任意）main.c を編集
     + 3, 4 行目を編集
