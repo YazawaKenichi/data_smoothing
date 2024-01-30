@@ -10,39 +10,39 @@ BINS = ./bin
 BUILD = ./build
 LIBS = -lm
 CFLAGS = -I$(INCS)
+PARAM = -O0
 
-PROGRAM = Smoother
+PROGRAM = run
 OBJS = $(BINS)/$(MAIN).o $(BINS)/$(SUB1).o
 CODES = $(SRCS)/$(MAIN).c $(SRCS)/$(SUB1).c
 
 .c.o:
-	$(CC) $(CFLAGS) -o $@ -c $<
+	$(CC) $(CFLAGS) -o $@ -c $< $(PARAM)
 
 $(PROGRAM): $(OBJS)
-	$(CC) $(CFLAGS) -o $(BUILD)/$@ $^ $(LIBS)
+	$(CC) $(CFLAGS) -o $(BUILD)/$@ $^ $(LIBS) $(PARAM)
 
-chmld: $(PROGRAM)
+chmod : $(PROGRAM)
 	sudo chmod +x $(BUILD)/$(PROGRAM)
 
-execute: $(PROGRAM)
-	$(BUILD)/$(PROGRAM)
+execute: all chmod
+	$(BUILD)/$(PROGRAM) $(FILE) $(COUNT)
+	cat $(FILE)
 
-all: clean $(PROGRAM)
+all: clean mkdir $(PROGRAM)
 
 clean:
 	rm -rf $(BUILD) $(BINS)
+
+mkdir:
 	mkdir $(BUILD) $(BINS)
 
-edit: editting $(PROGRAM)
-
-editting:
+edit:
 	$(EDITOR) $(EPARAM) $(INCS)/* $(SRCS)/*
 
-# 以下を変更
-# ゆーて使わないようにできてる
 $(BINS)/$(MAIN).o: $(SRCS)/$(MAIN).c $(INCS)/$(MAIN).h
-	$(CC) $(CFLAGS) -o $@ -c $<
-$(BINS)/$(SUB1).o: $(SRCS)/$(SUB1).c $(INCS)/$(SUB1).h
-	$(CC) $(CFLAGS) -o $@ -c $<
+	$(CC) $(CFLAGS) -o $@ -c $< $(PARAM)
 
+$(BINS)/$(SUB1).o: $(SRCS)/$(SUB1).c $(INCS)/$(SUB1).h
+	$(CC) $(CFLAGS) -o $@ -c $< $(PARAM)
 
