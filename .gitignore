@@ -1,5 +1,5 @@
-./bin
-./build
-./run
+bin/
+build/
+run/
 *.csv
 
