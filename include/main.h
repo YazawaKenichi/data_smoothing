@@ -10,6 +10,7 @@
 #include "smoothing.h"
 
 void print(int *, int *);
+double rand_normal(double, double);
 
 #endif
 

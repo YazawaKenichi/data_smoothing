@@ -1,4 +1,6 @@
 #include "main.h"
+#include <stdlib.h>
+#include <math.h>
 
 #define DATA_SIZE 20
 
@@ -17,14 +19,14 @@ int main(int argc, char *argv[])
     {
         if(count < adj)
         {
-            plot_data[i] = init_data * bias;
+            plot_data[i] = rand_normal(init_data * bias, 16);
             count++;
         }
         else
         {
             count = 1;
             init_data++;
-            plot_data[i] = init_data* bias;
+            plot_data[i] = rand_normal(init_data * bias, 16);
         }
     }
 
@@ -53,3 +55,15 @@ void print(int *bef, int *aft)
         printf("%d, %d\n", *(bef + i), *(aft + i));
     }
 }
+
+double Uniform( void )
+{
+    return ((double) rand() + 1.0) / ((double) RAND_MAX + 2.0);
+}
+
+double rand_normal( double mu, double sigma )
+{
+    double z = sqrt( -2.0 * log(Uniform())) * sin(2.0 * M_PI * Uniform());
+    return mu + sigma * z;
+}
+
