@@ -1,3 +1,7 @@
+DATASIZE = 1000
+ADJ = 1
+FILE = out.csv
+
 MAIN = main
 SUB1 = smoothing
 
@@ -26,8 +30,7 @@ chmod : $(PROGRAM)
 	sudo chmod +x $(BUILD)/$(PROGRAM)
 
 execute: all chmod
-	$(BUILD)/$(PROGRAM) $(FILE) $(COUNT)
-	cat $(FILE)
+	$(BUILD)/$(PROGRAM) $(DATASIZE) $(ADJ) > $(FILE)
 
 all: clean mkdir $(PROGRAM)
 

@@ -9,7 +9,7 @@
 
 #include "smoothing.h"
 
-void print(int *, int *);
+void print(int *, int *, uint8_t);
 double rand_normal(double, double);
 
 #endif

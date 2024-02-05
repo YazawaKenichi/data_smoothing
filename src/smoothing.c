@@ -1,5 +1,6 @@
 #include "smoothing.h"
 
+#include <stdio.h>
 #include <stdlib.h>
 
 void smoothing(int *data, uint16_t size, uint8_t adj)

@@ -2,55 +2,54 @@
 #include <stdlib.h>
 #include <math.h>
 
-#define DATA_SIZE 20
-
 int main(int argc, char *argv[])
 {
-    int plot_data[DATA_SIZE];
-    int bef[DATA_SIZE];
-    int aft[DATA_SIZE];
     float init_data = 0;
     uint16_t count = 0;
-    uint8_t adj = atoi(argv[1]);
+    uint8_t data_size = atoi(argv[1]);
+    uint8_t adj = atoi(argv[2]);
     uint8_t bias = 100;
+    int *plot_data = malloc(data_size * sizeof(int));
+    int *bef = malloc(data_size * sizeof(int));
+    int *aft = malloc(data_size * sizeof(int));
 
     //! センサのデータ配列を作成
-    for(uint16_t i = 0; i < DATA_SIZE; i++)
+    for(uint16_t i = 0; i < data_size; i++)
     {
         if(count < adj)
         {
-            plot_data[i] = rand_normal(init_data * bias, 16);
+            *(plot_data + i) = rand_normal(init_data * bias, 16);
             count++;
         }
         else
         {
             count = 1;
             init_data++;
-            plot_data[i] = rand_normal(init_data * bias, 16);
+            *(plot_data + i) = rand_normal(init_data * bias, 16);
         }
     }
 
     //! 出力用データ保存
-    for(int i = 0; i < DATA_SIZE; i++)
+    for(int i = 0; i < data_size; i++)
     {
-        bef[i] = plot_data[i];
+        *(bef + i) = *(plot_data + i);
     }
 
     //! 平滑化
-    smoothing(plot_data, DATA_SIZE, adj);
+    smoothing(plot_data, data_size, adj);
 
     //! 出力用データ保存
-    for(int i = 0; i < DATA_SIZE; i++)
+    for(int i = 0; i < data_size; i++)
     {
-        aft[i] = plot_data[i];
+        *(aft + i) = *(plot_data + i);
     }
 
-    print(bef, aft);
+    print(bef, aft, data_size);
 }
 
-void print(int *bef, int *aft)
+void print(int *bef, int *aft, uint8_t size)
 {
-    for(uint16_t i = 0; i < DATA_SIZE; i++)
+    for(uint16_t i = 0; i < size; i++)
     {
         printf("%d, %d\n", *(bef + i), *(aft + i));
     }
