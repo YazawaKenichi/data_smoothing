@@ -1,58 +1,57 @@
 #include "main.h"
 #include <stdlib.h>
 #include <math.h>
+#include "flash.h"
 
 int main(int argc, char *argv[])
 {
-    float init_data = 0;
-    uint16_t count = 0;
-    uint8_t data_size = atoi(argv[1]);
-    uint8_t adj = atoi(argv[2]);
-    uint8_t bias = 100;
-    int *plot_data = malloc(data_size * sizeof(int));
-    int *bef = malloc(data_size * sizeof(int));
-    int *aft = malloc(data_size * sizeof(int));
+    //! argv 1 : adj, 2 : path
+    smooth(atoi(argv[1]), argv[2]);
+    return 0;
+}
 
-    //! センサのデータ配列を作成
-    for(uint16_t i = 0; i < data_size; i++)
-    {
-        if(count < adj)
-        {
-            *(plot_data + i) = rand_normal(init_data * bias, 16);
-            count++;
-        }
-        else
-        {
-            count = 1;
-            init_data++;
-            *(plot_data + i) = rand_normal(init_data * bias, 16);
-        }
-    }
+int smooth(uint8_t adj, char *path)
+{
+    uint8_t data_size = (uint8_t) ((double) sizeof(normalx) / (double) sizeof(int));
+    int* ptrx = normalx;
+    int* ptry = normaly;
+    int *befx = malloc(data_size * sizeof(int));
+    int *aftx = malloc(data_size * sizeof(int));
+    int *befy = malloc(data_size * sizeof(int));
+    int *afty = malloc(data_size * sizeof(int));
 
     //! 出力用データ保存
     for(int i = 0; i < data_size; i++)
     {
-        *(bef + i) = *(plot_data + i);
+        *(befx + i) = *(ptrx + i);
+        *(befy + i) = *(ptrx + i);
     }
 
     //! 平滑化
-    smoothing(plot_data, data_size, adj);
+    printf("Smoothing X\r\n");
+    smoothing(ptrx, data_size, adj, 0x01);
+    printf("Smoothing Y\r\n");
+    smoothing(ptry, data_size, adj, 0x01);
 
     //! 出力用データ保存
     for(int i = 0; i < data_size; i++)
     {
-        *(aft + i) = *(plot_data + i);
+        *(aftx + i) = *(ptrx + i);
+        *(afty + i) = *(ptry + i);
     }
 
-    print(bef, aft, data_size);
+    write(path, aftx, afty, data_size);
 }
 
-void print(int *bef, int *aft, uint8_t size)
+void write(char *path, int *x, int *y, uint8_t size)
 {
+    FILE *f = NULL;
+    f = fopen(path, "w");
     for(uint16_t i = 0; i < size; i++)
     {
-        printf("%d, %d\n", *(bef + i), *(aft + i));
+        fprintf(f, "%d, %d\r\n", *(x + i), *(y + i));
     }
+    fclose(f);
 }
 
 double Uniform( void )

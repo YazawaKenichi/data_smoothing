@@ -3,7 +3,7 @@
 
 #include <stdint.h>
 
-void smoothing(int *, uint16_t, uint8_t);
+void smoothing(int *, uint16_t, uint8_t, uint8_t);
 
 #endif
 

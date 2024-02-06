@@ -9,8 +9,10 @@
 
 #include "smoothing.h"
 
-void print(int *, int *, uint8_t);
-double rand_normal(double, double);
+int smooth(uint8_t adj, char *path);
+void write(char *path, int *x, int *y, uint8_t size);
+double Uniform( void );
+double rand_normal( double mu, double sigma );
 
 #endif
 
